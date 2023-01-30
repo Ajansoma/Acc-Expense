@@ -1,0 +1,71 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.listDisplay {
+  list-style: none;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.trashDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 8rem; */
+}
+
+.trash {
+  font-size: 2rem;
+}
+.title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+
+.body {
+  font-size: 1.6rem;
+}
+
+.date {
+  font-style: italic;
+  font-size: 1.4rem;
+  color: #868e96;
+  margin-left: 14rem;
+}
+
+@media (max-width: 88em) {
+  .list {
+    width: 30rem;
+  }
+}
+
+@media (max-width: 64em) {
+  .list {
+    width: 20rem;
+  }
+
+  .trash {
+    font-size: 1.8rem;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .body {
+    font-size: 1.4rem;
+  }
+
+  .date {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 40em) {
+  .list {
+    width: 30rem;
+  }
+}

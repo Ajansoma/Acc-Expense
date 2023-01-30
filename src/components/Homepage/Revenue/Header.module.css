@@ -1,0 +1,34 @@
+.container {
+  font-size: 3.6rem;
+  height: 6rem;
+  background-color: #fff;
+  width: 100;
+  /* position: sticky; */
+  z-index: 5;
+}
+
+.icon ion-icon {
+  font-size: 3.6rem;
+  padding-left: 4rem;
+  padding-top: 1rem;
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 88em) {
+  .icon ion-icon {
+    display: block;
+  }
+
+  .new-icon ion-icon {
+    font-size: 3.6rem;
+    padding-left: 4rem;
+    padding-top: 1rem;
+    display: block;
+    margin-left: 24rem;
+  }
+
+  .container {
+    display: flex;
+  }
+}

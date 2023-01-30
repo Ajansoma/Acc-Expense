@@ -1,0 +1,31 @@
+.note {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 5rem;
+  margin-top: 5rem;
+
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+}
+.emptyNote {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+@media (max-width: 88em) {
+  .note {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 40em) {
+  .note {
+    margin-top: 30rem;
+    display: block;
+  }
+}

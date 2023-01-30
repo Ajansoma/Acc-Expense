@@ -1,0 +1,52 @@
+.container {
+  height: 100vh;
+  max-height: 100vh;
+  overflow: auto;
+  background-color: #ffff;
+  position: fixed;
+  width: 26rem;
+  box-shadow: 0 1rem 2rem rgb(206, 234, 255);
+  font-size: 1.8rem;
+  padding-top: 8rem;
+  z-index: 10;
+}
+
+.title {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  /* background-color: #00555e; */
+  background-color: #00b4e2;
+
+  color: #e9fafb;
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  margin-left: -2rem;
+  margin-bottom: 2.2rem;
+}
+
+.container li {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 2rem;
+}
+
+.order-form,
+.order-list,
+.expense-form,
+.todo,
+.notes,
+.customers {
+  text-decoration: none;
+  color: #495057;
+
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.expense-form,
+.customers {
+  margin-bottom: 4rem;
+}

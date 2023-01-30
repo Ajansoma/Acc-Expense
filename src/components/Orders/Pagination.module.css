@@ -1,0 +1,38 @@
+.container {
+  background-color: #e9fafb;
+  padding: 2.6rem;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+.other-pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pages-left {
+  font-size: 1.4rem;
+}
+
+.btn-1,
+.btn-2 {
+  border: none;
+  padding: 0.8rem 1.6rem;
+  background-color: #00555e;
+  color: #e9fafb;
+  font-family: inherit;
+  border-radius: 6px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

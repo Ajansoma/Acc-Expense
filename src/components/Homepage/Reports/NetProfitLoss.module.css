@@ -1,0 +1,77 @@
+.container {
+  background-color: #fff;
+  padding: 2rem;
+  /* box-shadow: 0 1rem 2rem rgb(191, 232, 236); */
+  box-shadow: 0 0.5rem 1rem rgb(206, 234, 255);
+  border-radius: 10px;
+  font-size: 1.6rem;
+  width: 31.9rem;
+}
+
+.title {
+  text-transform: uppercase;
+  background-color: #00b4e2;
+  color: #ebf5fc;
+  letter-spacing: -0.5px;
+  font-size: 1.4rem;
+  display: inline-block;
+  padding: 0.6rem;
+  border-radius: 5px;
+  margin-bottom: 3rem;
+}
+
+.earnings,
+.expenses,
+.profit-loss {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.earnings ion-icon,
+.expenses ion-icon,
+.profit-loss ion-icon {
+  /* color: #797dc2; */
+  color: #7978cc;
+}
+
+.container ion-icon {
+  background-color: #ebf5fc;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
+
+.amount,
+.expense-amount,
+.profit {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.figures {
+  font-weight: 700;
+}
+
+.amount-title {
+  font-size: 1.2rem;
+  margin-top: -1rem;
+  color: #868e96;
+}
+
+@media (max-width: 88em) {
+  .container {
+    width: 39rem;
+  }
+}
+
+@media (max-width: 42em) {
+  .container {
+    width: 94%;
+    margin-bottom: 2rem;
+  }
+}

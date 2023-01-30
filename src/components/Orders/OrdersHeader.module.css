@@ -1,0 +1,15 @@
+.header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 6rem;
+  background-color: #e9fafb;
+
+  padding: 1.6rem;
+  border-bottom: 1px solid #25cbd3;
+  /* border-bottom: 1px solid #ced4da; */
+
+  font-weight: 600;
+  color: #212529;
+  font-size: 1.8rem;
+}

@@ -1,0 +1,73 @@
+.form {
+  margin-top: 1.4rem;
+  padding: 2rem;
+  /* display: flex;
+  flex-direction: column;
+  flex-grow: 1; */
+}
+
+.title input,
+.note textarea {
+  border: none;
+  outline: none;
+  width: 50rem;
+  font-family: inherit;
+  border-radius: 10px;
+}
+
+.title input {
+  font-size: 1.8rem;
+  margin-bottom: 1.4rem;
+  height: 4rem;
+}
+
+.note textarea {
+  font-size: 1.8rem;
+  flex-grow: 1;
+  line-height: 1.5;
+  resize: none;
+  height: 80vh;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+  background-color: #25cbd3;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1.4rem;
+  color: #e9fafb;
+  font-weight: 500;
+  font-size: 1.6rem;
+}
+
+.spinner {
+  text-align: center;
+  padding: 0.8rem 1.6rem;
+}
+.invalid {
+  color: #e03131;
+  font-size: 1.4rem;
+  margin-bottom: -0.4rem;
+  margin-top: -0.1rem;
+}
+
+@media (max-width: 64em) {
+  .title input,
+  .note textarea {
+    width: 40rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .title input,
+  .note textarea {
+    width: 30rem;
+  }
+}
+@media (max-width: 40em) {
+  .title input,
+  .note textarea {
+    width: 40rem;
+  }
+}

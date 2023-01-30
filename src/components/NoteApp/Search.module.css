@@ -1,0 +1,32 @@
+.search {
+  padding: 2rem;
+  margin-top: 1.4rem;
+}
+
+.search input {
+  border-radius: 10px;
+  width: 26rem;
+  height: 4rem;
+}
+
+.search input::placeholder {
+  font-size: 1.4rem;
+  padding-left: 2rem;
+}
+
+.search input {
+  border: 1.5px solid #25cbd3;
+}
+
+.search input:focus {
+  outline: none;
+  border-color: #25cbd3;
+  background-color: #f8f9fa;
+}
+
+@media (max-width: 64em) {
+  .search input {
+    width: 22rem;
+    height: 4rem;
+  }
+}

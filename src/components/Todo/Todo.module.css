@@ -1,0 +1,19 @@
+/* .container {
+  margin: 20rem 0 2rem 50rem;
+} */
+
+.no-task {
+  margin-top: 4rem;
+  font-size: 1.6rem;
+  background-color: #e9fafb;
+  padding: 1.6rem;
+  width: 51rem;
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 0 0.5rem 1rem rgb(191, 232, 236);
+
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

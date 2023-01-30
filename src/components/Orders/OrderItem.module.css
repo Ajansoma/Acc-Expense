@@ -1,0 +1,40 @@
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 6rem;
+  cursor: pointer;
+  background-color: #e9fafb;
+  border-bottom: 1px solid #25cbd3;
+  font-size: 1.6rem;
+  /* width: 78rem; */
+  padding: 1.6rem;
+  transition: all 0.3s;
+}
+
+.list:hover {
+  background-color: #d3f5f6;
+}
+
+.checkbox input {
+  height: 2rem;
+  width: 2rem;
+  background-color: #212529;
+}
+
+.personal-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.name {
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 0.4rem;
+}
+
+.number {
+  font-size: 1.4rem;
+}

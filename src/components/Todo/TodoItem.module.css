@@ -1,0 +1,33 @@
+.container {
+  font-size: 1.6rem;
+  background-color: #e9fafb;
+  padding: 1.6rem;
+  border-bottom: 1px solid #25cbd3;
+  width: 48rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+@media (max-width: 40em) {
+  .container {
+    width: 38rem;
+  }
+}
+
+@media (max-width: 32em) {
+  .container {
+    width: 28rem;
+  }
+}
+
+@media (max-width: 26em) {
+  .container {
+    width: 25rem;
+  }
+}

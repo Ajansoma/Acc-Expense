@@ -1,0 +1,80 @@
+.container {
+  background-color: #fff;
+  padding: 2rem;
+  /* box-shadow: 0 1rem 2rem rgb(191, 232, 236); */
+  /* box-shadow: 0 1rem 2rem rgb(206, 234, 255); */
+  box-shadow: 0 0.5rem 1rem rgb(206, 234, 255);
+  border-radius: 10px;
+  font-size: 1.6rem;
+  width: 31.9rem;
+}
+
+.title {
+  text-transform: uppercase;
+  background-color: #3599e3;
+  /* background-color: #7978cc; */
+  /* background-color: #ea73c1; */
+  color: #ebf5fc;
+  letter-spacing: -0.5px;
+  font-size: 1.4rem;
+  display: inline-block;
+  padding: 0.6rem;
+  border-radius: 5px;
+  margin-bottom: 3rem;
+}
+
+.number-1,
+.number-2,
+.number-3 {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.number-1 ion-icon,
+.number-2 ion-icon,
+.number-3 ion-icon {
+  /* color: #ea73c1; */
+  color: #7978cc;
+}
+
+.container ion-icon {
+  /* background-color: #f2f2fa; */
+  background-color: #ebf5fc;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
+
+.first-place,
+.second-place,
+.third-place {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.figures {
+  font-weight: 700;
+}
+
+.place-title {
+  font-size: 1.2rem;
+  margin-top: -1rem;
+  color: #868e96;
+}
+
+@media (max-width: 88em) {
+  .container {
+    width: 39rem;
+  }
+}
+
+@media (max-width: 42em) {
+  .container {
+    width: 94%;
+  }
+}

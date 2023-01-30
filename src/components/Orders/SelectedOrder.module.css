@@ -1,0 +1,10 @@
+.selected-order {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  font-size: 1.8rem;
+  padding: 1.4rem;
+  background-color: #e9fafb;
+  cursor: pointer;
+}

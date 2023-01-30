@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 3.6rem;
+  margin-top: 3.6rem;
+  margin-right: 3rem;
+}
+
+@media (max-width: 47em) {
+  .container {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 42em) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* margin-right: 3rem; */
+  }
+}

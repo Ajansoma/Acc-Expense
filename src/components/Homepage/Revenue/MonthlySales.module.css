@@ -1,0 +1,59 @@
+.container {
+  background-color: #fff;
+  /* box-shadow: 0 1rem 2rem rgb(196, 230, 234); */
+  /* box-shadow: 0 1rem 2rem rgb(206, 234, 255); */
+  box-shadow: 0 0.5rem 1rem rgb(206, 234, 255);
+  display: inline-block;
+  /* padding: 2rem 6rem; */
+  height: 18rem;
+  width: 33rem;
+  padding-left: 2rem;
+  border-radius: 10px;
+}
+
+.sales {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  margin-top: 4rem;
+}
+
+.monthly-sales {
+  font-size: 1.2rem;
+  margin-top: -1rem;
+  color: #868e96;
+}
+
+.purchases {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.purchases ion-icon {
+  font-size: 2.4rem;
+  background-color: #00b4e2;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 100%;
+}
+
+@media (max-width: 88em) {
+  .container {
+    width: 40rem;
+  }
+}
+
+@media (max-width: 47em) {
+  .container {
+    width: 60rem;
+  }
+}
+
+@media (max-width: 42em) {
+  .container {
+    width: 96%;
+  }
+}
