@@ -7,6 +7,7 @@ const OrdersHeader = function () {
       <div>Unit Name</div>
       <div>Price</div>
       <div>Date</div>
+      <div>Delete Order</div>
     </header>
   );
 };

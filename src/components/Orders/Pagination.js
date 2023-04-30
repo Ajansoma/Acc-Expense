@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { OrderContext } from "../../order-context/order-context";
+import { OrderContext } from "../../Store/order-context";
 import styles from "./Pagination.module.css";
 
 const Pagination = function (props) {

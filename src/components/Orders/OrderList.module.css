@@ -9,15 +9,15 @@
   overflow-x: auto;
   overflow: auto;
   border-radius: 10px;
-
-  box-shadow: 0 1rem 2rem rgb(191, 232, 236);
+  /* 
+  box-shadow: 0 1rem 2rem rgb(191, 232, 236); */
+  box-shadow: 0 1rem 2rem rgb(206, 234, 255);
 }
 
 .spinner,
 .error {
   width: 89rem;
   height: 10rem;
-
   text-align: center;
 }
 
@@ -29,7 +29,6 @@
 .no-order {
   width: 89rem;
   height: 89rem;
-
   text-align: center;
 }
 

@@ -2,8 +2,8 @@ import styles from "./ExpensesChart.module.css";
 import useCalc from "../../../hooks/useCalc";
 const ExpensesChart = function () {
   const { formattedExpensesDif, expenseDif, totalExpenses } = useCalc();
-  const changePercent = Math.round((expenseDif / totalExpenses) * 100);
-  const posNeg = expenseDif > 0 ? "+" : "-";
+  const changePercent = Math.round((expenseDif / totalExpenses) * 100) || 0;
+  const posNeg = expenseDif >= 0 ? "+" : "-";
 
   return (
     <div className={styles.container}>

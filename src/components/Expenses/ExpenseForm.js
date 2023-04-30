@@ -1,43 +1,39 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
-import styles from "./PurchaseForm.module.css";
+import styles from "./ExpenseForm.module.css";
 import FormInput from "../../UI/FormInput";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import LoadingSpinner from "../../UI/LoadingSpinner";
-import { useHistory } from "react-router-dom";
 
 const schema = yup
   .object({
-    customerName: yup.string().required(),
-    customerNumber: yup
+    adExpenses: yup
       .number()
-      .test("len", "Max 10 numbers", (val) => val.toString().length === 10)
-      .positive("selling price must be a positive number")
-      .typeError("selling price must be a positive number")
+      .positive("Ad Expenses must be a positive number")
+      .typeError("Ad Expenses must be a positive number")
       .required(),
-    unitName: yup.string().required(),
-    sellingPrice: yup
+    otherExpenses: yup
       .number()
-      .positive("selling price must be a positive number")
-      .typeError("selling price must be a positive number")
+      .positive("Other Expenses must be a positive number")
+      .typeError("Other Expenses must be a positive number")
       .required(),
-    costPrice: yup
-      .number()
-      .positive("cost price must be a positive number")
-      .typeError("cost price must be a positive number")
-      .required(),
+    // totalExpenses: yup
+    //   .number()
+    //   .positive("Total Expenses must be a positive number")
+    //   .typeError("Total Expenses must be a positive number")
+    //   .required(),
     date: yup.string().required(),
   })
   .required();
 
-const PurchaseForm = function () {
+const ExpenseForm = function () {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const history = useHistory();
-
   const {
     register,
     handleSubmit,
@@ -58,8 +54,9 @@ const PurchaseForm = function () {
   const submitForm = async function (data) {
     setIsLoading(true);
     try {
-      const res = await addDoc(collection(db, "orders"), {
+      const res = await addDoc(collection(db, "expenses"), {
         ...data,
+        totalExpenses: +data.adExpenses + +data.otherExpenses,
       });
     } catch (err) {
       setError(true);
@@ -67,46 +64,36 @@ const PurchaseForm = function () {
     setIsLoading(false);
 
     if (!error) {
-      history.replace("/orders");
+      history.replace("/");
     }
-
     reset();
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
       <div className={styles.sales}>
-        <p>purchase form</p>
+        <p>Expenses form</p>
       </div>
+      <FormInput label="Ad Expenses" name="adExpenses" register={register} />
+      <p className={styles.invalid}>{errors.adExpenses?.message}</p>
       <FormInput
-        label="Customer Name"
-        name="customerName"
+        label="Other Expenses"
+        name="otherExpenses"
         register={register}
       />
-      <p className={styles.invalid}>{errors.customerName?.message}</p>
-      <FormInput
-        label="Customer Number"
-        name="customerNumber"
-        register={register}
-      />
-      <p className={styles.invalid}>{errors.customerNumber?.message}</p>
 
-      <FormInput label="Unit Name" name="unitName" register={register} />
-      <p className={styles.invalid}>{errors.unitName?.message}</p>
-
+      {/* <p className={styles.invalid}>{errors.otherExpenses?.message}</p>
       <FormInput
-        label="Selling Price"
-        name="sellingPrice"
+        label="Total Expenses"
+        name="totalExpenses"
         register={register}
-      />
-      <p className={styles.invalid}>{errors.sellingPrice?.message}</p>
-      <FormInput label="Cost Price" name="costPrice" register={register} />
-      <p className={styles.invalid}>{errors.costPrice?.message}</p>
+      /> */}
+      <p className={styles.invalid}>{errors.totalExpenses?.message}</p>
+
       <FormInput label="Date" name="date" register={register} type="date" />
       <p className={styles.invalid}>{errors.date?.message}</p>
 
       <div className={styles.btn}>
-        {error && <div>Sorry! something went wrong try Again.</div>}
         <button className={styles.cancel} type="button" onClick={() => reset()}>
           cancel
         </button>
@@ -118,4 +105,4 @@ const PurchaseForm = function () {
     </form>
   );
 };
-export default PurchaseForm;
+export default ExpenseForm;

@@ -3,19 +3,23 @@ import React, { useState } from "react";
 export const OrderContext = React.createContext({
   orders: [],
   expenses: [],
+  notes: [],
   orderHandler: () => {},
   expensesHandler: () => {},
+  notesHandler: () => {},
 });
 
 //lOCAL STORAGE
 const getStorage = localStorage.getItem("orders");
-const storageData = getStorage ? JSON.parse(getStorage) : [];
 const getExpenses = localStorage.getItem("expenses");
-const storedExpenses = getExpenses ? JSON.parse(getExpenses) : [];
+const getData = localStorage.getItem("notes");
 
 const OrderProvider = function (props) {
-  const [orders, setOrder] = useState(storageData);
-  const [expenses, setExpenses] = useState(storedExpenses);
+  const [orders, setOrder] = useState(getStorage ? JSON.parse(getStorage) : []);
+  const [expenses, setExpenses] = useState(
+    getExpenses ? JSON.parse(getExpenses) : []
+  );
+  const [notes, setNotes] = useState(getData ? JSON.parse(getData) : []);
 
   const changeOrderHandler = function (order) {
     setOrder(order);
@@ -25,11 +29,17 @@ const OrderProvider = function (props) {
     setExpenses(expenses);
   };
 
+  const notesHandler = function (notes) {
+    setNotes(notes);
+  };
+
   const contextValue = {
     orders: orders,
     expenses: expenses,
+    notes: notes,
     orderHandler: changeOrderHandler,
     expensesHandler: expensesHandler,
+    notesHandler: notesHandler,
   };
 
   return (

@@ -1,0 +1,123 @@
+.login {
+  background-color: #f8f9fa;
+  height: 58rem;
+  margin: 10rem 30rem 0 30rem;
+  border-radius: 10px;
+
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 1rem 2rem rgb(206, 234, 255);
+}
+
+.invalid-form {
+  color: #c92a2a;
+  font-size: 1.4rem;
+  margin-top: 0.4rem;
+  margin-left: -40rem;
+  margin-bottom: 0.6rem;
+}
+
+.login input {
+  border: 1px solid #ced4da;
+  padding: 1.6rem 14rem;
+  height: 2rem;
+  width: 40rem;
+  padding-left: 1rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1.6rem;
+}
+
+.login label {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.login input:focus {
+  outline: 1.2px solid #aac4ff;
+}
+
+.invalid-text input:focus {
+  border: 1.2px solid #c92a2a;
+}
+
+.invalid-text {
+  color: #c92a2a;
+}
+
+.login input,
+.login label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.reset {
+  margin: 1.4rem -30rem 1.8rem 0;
+  font-weight: 1.6rem;
+}
+
+/* .remember {
+  display: flex;
+  gap: -5rem;
+} */
+
+.checkbox:focus {
+  accent-color: #aac4ff;
+}
+
+.forgot-password {
+  color: #6439ff;
+}
+
+.forgot-password:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.btn {
+  height: 5rem;
+  width: 40rem;
+  /* background-color: #aac4ff; */
+  background-color: #395b64;
+  color: #c4ced1;
+  cursor: pointer;
+  border: none;
+  font-size: 1.6rem;
+  border-radius: 6px;
+  margin-top: 1.4rem;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background-color: #284046;
+  /* background-color: #b1b2ff; */
+}
+
+/* welcome */
+.welcome {
+  margin: 3rem 0 2rem -26rem;
+  padding-top: 1rem;
+}
+
+.welcome h3 {
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+
+.create-account {
+  font-size: 1.4rem;
+  color: #868e96;
+  text-decoration: none;
+}
+
+.account:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.account {
+  margin-left: 0.6rem;
+  color: #6439ff;
+  font-weight: 600;
+}

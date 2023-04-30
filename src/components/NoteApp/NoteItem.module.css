@@ -1,7 +1,9 @@
-.list {
+.list :link {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  text-decoration: none;
+  color: #495057;
 }
 
 .listDisplay {

@@ -13,14 +13,15 @@
 
 .title {
   font-size: 1.4rem;
+  font-weight: 600;
+  color: #868e96;
   text-transform: uppercase;
   letter-spacing: -0.5px;
   /* background-color: #00555e; */
-  background-color: #00b4e2;
+  /* background-color: #00b4e2; */
 
-  color: #e9fafb;
   display: inline-block;
-  padding: 0.6rem 1.2rem;
+  padding: 0 1.2rem;
   border-radius: 6px;
   margin-left: -2rem;
   margin-bottom: 2.2rem;

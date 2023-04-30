@@ -5,44 +5,39 @@ import LoadingSpinner from "../../UI/LoadingSpinner";
 import OrderItem from "./OrderItem";
 import styles from "./OrderList.module.css";
 import Pagination from "./Pagination";
-import { OrderContext } from "../../order-context/order-context";
+import { OrderContext } from "../../Store/order-context";
 import OrdersHeader from "./OrdersHeader";
-import SelectedOrder from "./SelectedOrder";
+import { db } from "../../firebase";
+import { collection, doc, deleteDoc, onSnapshot } from "firebase/firestore";
+import useOrder from "../../hooks/useOrder";
 
 const OrderList = function () {
-  const [selectedItem, setSelectedItem] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ordersPerPage] = useState(5);
   const orderCxt = useContext(OrderContext);
   const { isLoading, error, sendRequest } = useHttp();
   const orders = orderCxt.orders;
+  const { dateHandler, currentDate } = useOrder();
+  const currentMonthOrders = dateHandler(orders, currentDate);
 
   useEffect(() => {
-    const transformedSales = function (orders) {
-      const loadedOrders = [];
-
-      for (const orderKey in orders) {
-        loadedOrders.push({
-          id: orderKey,
-          name: orders[orderKey].name,
-          number: orders[orderKey].number,
-          unit: orders[orderKey].unit,
-          price: orders[orderKey].price,
-          cost: orders[orderKey].cost,
-          date: orders[orderKey].date,
+    const unsub = onSnapshot(
+      collection(db, "orders"),
+      (doc) => {
+        let loadedOrders = [];
+        doc.docs.forEach((doc) => {
+          loadedOrders.push({ id: doc.id, ...doc.data() });
         });
-      }
-      orderCxt.orderHandler(loadedOrders);
-    };
-
-    sendRequest(
-      {
-        url: `https://acc-app-3d7ab-default-rtdb.firebaseio.com/sales.json`,
-        method: "DELETE",
+        orderCxt.orderHandler(loadedOrders);
       },
-      transformedSales
+      (error) => {
+        console.log(error);
+      }
     );
-  }, [sendRequest]);
+    return () => {
+      unsub();
+    };
+  }, []);
 
   //SET LOCAL STORAGE
   useEffect(() => {
@@ -55,34 +50,21 @@ const OrderList = function () {
   };
   const indexOfLastPage = currentPage * ordersPerPage;
   const indexOfFirstPage = indexOfLastPage - ordersPerPage;
-  const currentOrders = orders.slice(indexOfFirstPage, indexOfLastPage);
+  const currentOrders = currentMonthOrders.slice(
+    indexOfFirstPage,
+    indexOfLastPage
+  );
 
-  // SELECTED ORDERS
-  const selectedOrderHandler = function (selectedOrder, isSelected) {
-    if (isSelected) {
-      setSelectedItem((prevState) => {
-        const selected = [...prevState, selectedOrder];
-        return selected;
-      });
-    } else {
-      setSelectedItem((prevState) => {
-        const removeItem = prevState.filter(
-          (item) => item.id !== selectedOrder.id
-        );
-        return removeItem;
-      });
+  // DELETE ORDERS
+  const selectedOrderHandler = async function (selectedOrder) {
+    try {
+      await deleteDoc(doc(db, "orders", selectedOrder.id));
+    } catch (err) {
+      console.log(err);
     }
-  };
-
-  //DELETE SELECTED ITEMS
-  const deleteSelectedOrderHandler = function (isDeleted) {
-    if (isDeleted) {
-      orderCxt.orderHandler((prevState) => {
-        const del = prevState.filter((order) => !selectedItem.includes(order));
-        return del;
-      });
-      setSelectedItem([]);
-    }
+    orderCxt.orderHandler((prevState) => {
+      return prevState.filter((order) => selectedOrder.id !== order.id);
+    });
   };
 
   let orderList = (
@@ -90,10 +72,10 @@ const OrderList = function () {
       {currentOrders.map((order) => (
         <OrderItem
           key={order.id}
-          name={order.name}
-          number={order.number}
-          price={order.price}
-          unit={order.unit}
+          name={order.customerName}
+          number={order.customerNumber}
+          price={order.costPrice}
+          unit={order.unitName}
           date={order.date}
           id={order.id}
           selectedOrder={selectedOrderHandler}
@@ -124,18 +106,8 @@ const OrderList = function () {
     orderList = <div className={styles.error}>Sorry! something went wrong</div>;
   }
 
-  let displaySelected = "";
-  if (selectedItem.length > 0) {
-    displaySelected = (
-      <SelectedOrder
-        selectedItem={selectedItem}
-        deleteSelectedItem={deleteSelectedOrderHandler}
-      />
-    );
-  }
   return (
     <div className={styles.container}>
-      {displaySelected}
       <OrdersHeader />
       {orderList}
       <Pagination

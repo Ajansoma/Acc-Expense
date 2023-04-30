@@ -1,16 +1,15 @@
 import styles from "./NoteItem.module.css";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 const NoteItem = function (props) {
   const note = props.note;
 
   const trashHandler = function () {
-    props.onDelete(props.id);
+    props.onDelete(note.id);
   };
 
   return (
-    <Link to={`/notes/${note.id}`}>
-      <div className={styles.list}>
+    <div className={styles.list}>
+      <Link to={`/notes/${note.id}`}>
         <ul>
           <li className={styles.listDisplay}>
             <div className={styles.trashDisplay}>
@@ -25,8 +24,8 @@ const NoteItem = function (props) {
             <div className={styles.date}>{note.date}</div>
           </li>
         </ul>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 export default NoteItem;

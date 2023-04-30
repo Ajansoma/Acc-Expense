@@ -1,11 +1,6 @@
-import { Fragment } from "react";
-import Expenses from "../components/Purchases/Expenses";
+import Expenses from "../components/Expenses/Expenses";
 
 const ExpensesPage = function () {
-  return (
-    <Fragment>
-      <Expenses />
-    </Fragment>
-  );
+  return <Expenses />;
 };
 export default ExpensesPage;

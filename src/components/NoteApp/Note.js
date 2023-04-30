@@ -1,59 +1,47 @@
-import { useState, useEffect } from "react";
-import useHttp from "../../hooks/use-form/useHttp";
+import { useState, useEffect, useContext } from "react";
 import NoteList from "./NoteList";
 import NoteForm from "./NoteForm";
+import { OrderContext } from "../../Store/order-context";
 import Search from "./Search";
 import styles from "./Note.module.css";
 import { useParams } from "react-router-dom";
-import { useMemo } from "react";
+import { db } from "../../firebase";
+import { collection, onSnapshot, doc, deleteDoc } from "firebase/firestore";
 
 const Note = function () {
-  //localstorage
-  const getData = localStorage.getItem("notes");
-  const localData = getData ? JSON.parse(getData) : [];
-
-  //states
-  const [notes, setNotes] = useState(localData);
   const [query, setQuery] = useState("");
   const [enteredData, setEnteredData] = useState([]);
   const [newInput, setNewInput] = useState([]);
-
-  const { isLoading, sendRequest: getRequest } = useHttp();
+  const noteCxt = useContext(OrderContext);
+  const notes = noteCxt.notes;
 
   const { noteId } = useParams();
   const selectedNote = notes.find((note) => note.id === noteId);
 
   useEffect(() => {
-    const transformedTasks = function (tasksData) {
-      const loadedTasks = [];
-
-      for (const key in tasksData) {
-        loadedTasks.push({
-          id: key,
-          title: tasksData[key].title,
-          body: tasksData[key].body,
-          date: tasksData[key].date,
+    const unsub = onSnapshot(
+      collection(db, "notes"),
+      (doc) => {
+        let loadedNotes = [];
+        doc.docs.forEach((doc) => {
+          loadedNotes.push({ id: doc.id, ...doc.data() });
         });
-      }
-      setNotes(loadedTasks);
-    };
-
-    getRequest(
-      {
-        url: `https://acc-app-3d7ab-default-rtdb.firebaseio.com/tasks.json`,
+        noteCxt.notesHandler(loadedNotes);
       },
-      transformedTasks
+      (error) => {
+        console.log(error);
+      }
     );
-  }, [getRequest]);
-
-  console.log(notes);
+    return () => {
+      unsub();
+    };
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
   const noteHandler = function (noteData) {
-    // setNotes((prevState) => [noteData, ...prevState]);
     setEnteredData((prevState) => [noteData, ...prevState]);
   };
 
@@ -65,14 +53,23 @@ const Note = function () {
     setNewInput(newInput);
   };
 
-  const deleteHandler = function (id) {
-    setNotes((prevList) => prevList.filter((note) => note.id !== id));
+  //delete note
+  const deleteHandler = async function (id) {
+    try {
+      await deleteDoc(doc(db, "notes", id));
+    } catch (err) {
+      console.log(err);
+    }
+    noteCxt.notesHandler((prevList) =>
+      prevList.filter((note) => note.id !== id)
+    );
   };
 
   let displayNotes;
   if (notes.length > 0) {
     displayNotes = (
       <NoteList
+        key={new Date().getTime().toString()}
         notes={notes}
         query={query}
         data={enteredData}

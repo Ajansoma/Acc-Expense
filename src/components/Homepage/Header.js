@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Menu from "../Menu";
+import Menu from "./Menu";
 import styles from "./Header.module.css";
 
 const Header = function (props) {
@@ -17,6 +17,7 @@ const Header = function (props) {
         <ion-icon name="menu-outline" onClick={menuHandler}></ion-icon>
       </div>
       {menu && <Menu />}
+      <div></div>
     </div>
   );
 };

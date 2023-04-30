@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { OrderContext } from "../order-context/order-context";
+import { OrderContext } from "../Store/order-context";
 
 const useOrder = function () {
   const orderCxt = useContext(OrderContext);
@@ -32,19 +32,19 @@ const useOrder = function () {
 
   const revenueCalc = function (orders) {
     return orders.reduce((cur, order) => {
-      return cur + Number(order.price);
+      return cur + Number(order.sellingPrice);
     }, 0);
   };
 
   const costCalc = function (orders) {
     return orders.reduce((cur, order) => {
-      return cur + Number(order.cost);
+      return cur + Number(order.costPrice);
     }, 0);
   };
 
-  const expensesCalc = function (orders) {
-    return orders.reduce((cur, order) => {
-      return cur + Number(order.expenses);
+  const expensesCalc = function (expenses) {
+    return expenses.reduce((cur, expense) => {
+      return cur + Number(expense.totalExpenses);
     }, 0);
   };
 

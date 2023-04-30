@@ -1,13 +1,14 @@
 .list {
   list-style: none;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   align-items: center;
   gap: 6rem;
   cursor: pointer;
-  background-color: #e9fafb;
+  /* background-color: #e9fafb; */
   border-bottom: 1px solid #25cbd3;
   font-size: 1.6rem;
+  background-color: #fff;
   /* width: 78rem; */
   padding: 1.6rem;
   transition: all 0.3s;

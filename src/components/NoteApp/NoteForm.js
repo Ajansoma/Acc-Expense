@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
-import useHttp from "../../hooks/use-form/useHttp";
 import styles from "./NoteForm.module.css";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 
 const NoteForm = function (props) {
   const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredNotes, setEnteredNotes] = useState("");
+  const [enteredBody, setEnteredBody] = useState("");
   const [isValid, setIsValid] = useState(true);
-  const { isLoading, sendRequest } = useHttp();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const now = new Date();
   const options = {
@@ -26,40 +28,52 @@ const NoteForm = function (props) {
   };
 
   const notesHandler = function (e) {
-    setEnteredNotes(e.target.value);
+    setEnteredBody(e.target.value);
   };
 
-  const transformedTask = function (tasks, taskData) {
-    const generatedId = taskData.id;
-    const generatedTasks = {
-      id: generatedId,
-      title: tasks.title,
-      body: tasks.body,
-      date: date.date,
-    };
-  };
+  // const transformedTask = function (tasks, taskData) {
+  //   const generatedId = taskData.id;
+  //   const generatedTasks = {
+  //     id: generatedId,
+  //     title: tasks.title,
+  //     body: tasks.body,
+  //     date: date.date,
+  //   };
+  // };
 
-  const submitFormHandler = function (e) {
+  const submitFormHandler = async function (e) {
     e.preventDefault();
 
     const data = {
       title: enteredTitle,
-      body: enteredNotes,
+      body: enteredBody,
       date: date,
     };
 
-    const options = {
-      url: `https://acc-app-3d7ab-default-rtdb.firebaseio.com/tasks.json`,
-      method: "POST",
-      body: data,
-      headers: { "Content-Type": "application/json" },
-    };
+    // const options = {
+    //   url: `https://acc-app-3d7ab-default-rtdb.firebaseio.com/tasks.json`,
+    //   method: "POST",
+    //   body: data,
+    //   headers: { "Content-Type": "application/json" },
+    // };
 
-    if (enteredTitle.trim() !== "" && enteredNotes.trim() !== "") {
-      sendRequest(options, transformedTask.bind(null, data));
-    } else {
-      setIsValid(false);
+    // if (enteredTitle.trim() !== "" && enteredNotes.trim() !== "") {
+    //   sendRequest(options, transformedTask.bind(null, data));
+    // } else {
+    //   setIsValid(false);
+
+    setIsLoading(true);
+    try {
+      const res = await addDoc(collection(db, "notes"), {
+        ...data,
+      });
+    } catch (err) {
+      setError(true);
     }
+    setIsLoading(false);
+
+    setEnteredBody("");
+    setEnteredTitle("");
   };
 
   useEffect(() => {
@@ -68,7 +82,7 @@ const NoteForm = function (props) {
     }
 
     setEnteredTitle(props.editNote.title);
-    setEnteredNotes(props.editNote.body);
+    setEnteredBody(props.editNote.body);
   }, [props.editNote]);
 
   return (
@@ -92,8 +106,8 @@ const NoteForm = function (props) {
           placeholder="Enter New Notes"
           onChange={notesHandler}
           id="body"
-          value={enteredNotes}
-          disabled={Boolean(props.editNote)}
+          value={enteredBody}
+          // disabled={Boolean(props.editNote)}
         ></textarea>
       </div>
       {!isValid && (

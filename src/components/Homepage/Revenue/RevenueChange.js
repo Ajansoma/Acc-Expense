@@ -3,6 +3,7 @@ import styles from "./RevenueChange.module.css";
 
 const RevenueChange = function () {
   const { formattedRevenueChange, revenueDif, changePercent } = useCalc();
+  const revenuePercent = changePercent || 0;
 
   //stlying percentage container
   const percentStyle =
@@ -28,7 +29,7 @@ const RevenueChange = function () {
       </div>
       <div className={percentStyle}>
         {icon}
-        <div>{changePercent}%</div>
+        <div>{revenuePercent}%</div>
       </div>
     </div>
   );

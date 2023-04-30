@@ -4,10 +4,11 @@ const SalesChart = function () {
   const { monthlyOrders, previousOrders } = useCalc();
 
   const salesDif = monthlyOrders.length - previousOrders.length;
-  const salesDifPercent = Math.round(
-    (salesDif / (monthlyOrders.length + previousOrders.length)) * 100
-  );
-  const posNeg = salesDif > 0 ? "+" : "-";
+  const salesDifPercent =
+    Math.round(
+      (salesDif / (monthlyOrders.length + previousOrders.length)) * 100
+    ) || 0;
+  const posNeg = salesDif >= 0 ? "+" : "-";
 
   return (
     <div className={styles.container}>
