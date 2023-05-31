@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
-import useCalc from "../../../hooks/useCalc";
-import styles from "./MainChart.module.css";
+import { useState } from 'react';
+import { Pie } from 'react-chartjs-2';
+import useCalc from '../../../hooks/useCalc';
+import styles from './MainChart.module.css';
 
 const labelData = [];
 for (let i = 0; i < 32; i++) {
@@ -10,16 +9,25 @@ for (let i = 0; i < 32; i++) {
 }
 
 const MainChart = function () {
-  const { monthlyOrders } = useCalc();
+  const { lastMonthRevenue, currentRevenue, revenueDif } = useCalc();
+
+  const data =
+    lastMonthRevenue === 0 || currentRevenue === 0 || revenueDif === 0
+      ? [100, 200, 40]
+      : [lastMonthRevenue, currentRevenue, revenueDif];
+
   const [userData] = useState({
-    labels: [...labelData],
+    labels: ['lastMonthRevenue', 'currentRevenue', 'revenueDifference'],
     datasets: [
       {
-        label: "Sales",
-        data: monthlyOrders.map((data) => data.price),
-        backgroundColor: ["#3599e3"],
-        borderColor: ["#3599e3"],
-        display: false,
+        label: 'My First Dataset',
+        data: data,
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+        ],
+        hoverOffset: 4,
       },
     ],
   });
@@ -27,7 +35,7 @@ const MainChart = function () {
   return (
     <div className={styles.container}>
       <div className={styles.chart}>
-        <Line data={userData} />
+        <Pie data={userData} />
       </div>
     </div>
   );

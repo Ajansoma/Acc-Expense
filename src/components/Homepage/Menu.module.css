@@ -7,8 +7,16 @@
   width: 26rem;
   box-shadow: 0 1rem 2rem rgb(206, 234, 255);
   font-size: 1.8rem;
-  padding-top: 8rem;
+  padding-top: 2rem;
   z-index: 10;
+}
+
+.logo {
+  font-size: 3rem;
+  padding-bottom: 3rem;
+  font-weight: 500;
+  padding-left: 3rem;
+  color: #3599e3;
 }
 
 .title {

@@ -1,4 +1,4 @@
-import useOrder from "./useOrder";
+import useOrder from './useOrder';
 
 const useCalc = function () {
   const {
@@ -38,7 +38,7 @@ const useCalc = function () {
   const profitOrLoss = monthlyRevenue - monthlyCost;
   const absProfitOrLoss = Math.abs(profitOrLoss);
   const formattedProfitOrLoss = formattedRevenue(absProfitOrLoss);
-  const displayProfitOrLoss = profitOrLoss < 0 ? "Loss" : "Profit";
+  const displayProfitOrLoss = profitOrLoss < 0 ? 'Loss' : 'Profit';
 
   //Expenses
   const currentMonthExpense = dateHandler(expenses, currentDate);
@@ -54,7 +54,7 @@ const useCalc = function () {
   const netProfitOrLoss = profitOrLoss - monthlyExpense;
   const netAbsProfitOrLoss = Math.abs(netProfitOrLoss);
   const netFormattedProfitOrLoss = formattedRevenue(netAbsProfitOrLoss);
-  const displayNetProfitOrLoss = netAbsProfitOrLoss < 0 ? "Loss" : "Profit";
+  const displayNetProfitOrLoss = netAbsProfitOrLoss < 0 ? 'Loss' : 'Profit';
 
   return {
     monthlyOrders,
@@ -72,6 +72,9 @@ const useCalc = function () {
     displayProfitOrLoss,
     revenueDif,
     changePercent,
+    lastMonthRevenue,
+    currentRevenue,
+    revenueDif,
   };
 };
 export default useCalc;
