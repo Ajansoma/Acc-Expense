@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS } from 'chart.js/auto';
 import useCalc from '../../../hooks/useCalc';
 import styles from './MainChart.module.css';
 
